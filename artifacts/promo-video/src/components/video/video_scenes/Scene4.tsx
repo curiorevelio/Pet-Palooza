@@ -48,7 +48,7 @@ export function Scene4() {
         whileHover={{ scale: 1.05 }}
       >
         <span className="text-[3vw] font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-          Download today
+          Download PawHub today
         </span>
       </motion.div>
     </motion.div>
