@@ -188,11 +188,11 @@ export default function Home() {
                   <Card className="h-full overflow-hidden hover-elevate transition-all border-none shadow-md hover:shadow-lg rounded-2xl cursor-pointer group">
                     <div className="h-32 bg-secondary relative">
                       {provider.coverPhotoUrl && (
-                        <img src={`${base}${provider.coverPhotoUrl}`} alt="" className="w-full h-full object-cover" />
+                        <img src={`${base}${provider.coverPhotoUrl}`} alt={`${provider.businessName} cover`} className="w-full h-full object-cover" />
                       )}
                       <div className="absolute -bottom-10 left-6">
                         <Avatar className="w-20 h-20 border-4 border-card shadow-sm">
-                          <AvatarImage src={provider.photoUrl ? `${base}${provider.photoUrl}` : ""} />
+                          <AvatarImage src={provider.photoUrl ? `${base}${provider.photoUrl}` : ""} alt={`${provider.businessName} portrait`} />
                           <AvatarFallback className="text-xl">{provider.businessName[0]}</AvatarFallback>
                         </Avatar>
                       </div>
@@ -248,7 +248,7 @@ export default function Home() {
                   <p className="text-lg leading-snug">&ldquo;{t.quote}&rdquo;</p>
                   <div className="flex items-center gap-3 pt-2 border-t">
                     <Avatar className="w-11 h-11">
-                      <AvatarImage src={`${base}${t.avatar}`} />
+                      <AvatarImage src={`${base}${t.avatar}`} alt={`${t.name} portrait`} />
                       <AvatarFallback>{t.name[0]}</AvatarFallback>
                     </Avatar>
                     <div>
