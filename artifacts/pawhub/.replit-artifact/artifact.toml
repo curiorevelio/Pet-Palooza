@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "PawHub"
+version = "1.0.0"
+id = "artifacts/pawhub"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19186
+
+[services.development]
+run = "pnpm --filter @workspace/pawhub run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pawhub", "run", "build" ]
+publicDir = "artifacts/pawhub/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19186"
+BASE_PATH = "/"
