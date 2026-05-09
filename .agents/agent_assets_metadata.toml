@@ -90,3 +90,27 @@ id = "w9YBHl23SALgoKQEIXZ_q"
 uri = "file://attached_assets/generated_images/joyful_happy_golden_retriever_24ef.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "kKlgarQry_oCV-xkIHzPM"
+uri = "file://artifacts/promo-video/public/images/groomer.png"
+type = "image"
+title = "Happy dog being groomed"
+
+[[generated]]
+id = "RljpoTRfMrQbRvUHPC2T3"
+uri = "file://artifacts/promo-video/public/images/coffee.png"
+type = "image"
+title = "Person sipping coffee"
+
+[[generated]]
+id = "0nDg6xo9xwjcGMLtgzNmU"
+uri = "file://artifacts/promo-video/public/images/phone.png"
+type = "image"
+title = "Mobile app UI mockup"
+
+[[generated]]
+id = "sTIMscrXyDptu7kfwgc1K"
+uri = "file://artifacts/promo-video/public/images/logo.png"
+type = "image"
+title = "PawHub dog paw logo"
