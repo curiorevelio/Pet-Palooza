@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "id": "11111111-1111-4111-8111-111111111101",
+    "position": 1,
+    "filepath": "src/pages/slides/Cover.tsx",
+    "title": "Cover",
+    "description": "PawHub — India's 10-minute pet care app. Bangalore · 2026.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111102",
+    "position": 2,
+    "filepath": "src/pages/slides/Problem.tsx",
+    "title": "The Problem",
+    "description": "Indian pet parents are stuck in WhatsApp groups — no reliability, transparency, SLA, or trusted brand.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111103",
+    "position": 3,
+    "filepath": "src/pages/slides/Solution.tsx",
+    "title": "The Solution",
+    "description": "Book any pet service in 10 minutes — one app, vetted providers, transparent pricing.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111104",
+    "position": 4,
+    "filepath": "src/pages/slides/WhyNow.tsx",
+    "title": "Why Now",
+    "description": "Three tailwinds converging: pet boom, premium pet parents, 10-minute expectations.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111105",
+    "position": 5,
+    "filepath": "src/pages/slides/MarketSize.tsx",
+    "title": "Market Size",
+    "description": "TAM $1.9B · SAM $450M · SOM $25M (Yr 3).",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111106",
+    "position": 6,
+    "filepath": "src/pages/slides/Product.tsx",
+    "title": "Product",
+    "description": "One app, every pet need — booking flow, provider profile, and pet profile + ETA.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111107",
+    "position": 7,
+    "filepath": "src/pages/slides/BusinessModel.tsx",
+    "title": "Business Model",
+    "description": "15–20% take-rate on every booking. Path to ₹100Cr ARR by Year 3.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111108",
+    "position": 8,
+    "filepath": "src/pages/slides/Projections.tsx",
+    "title": "Projected Numbers",
+    "description": "3-year financial trajectory across cities, bookings, GMV, and revenue.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111109",
+    "position": 9,
+    "filepath": "src/pages/slides/Traction.tsx",
+    "title": "Traction",
+    "description": "400 waitlist users, willingness-to-pay data, validation landing page live.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111110",
+    "position": 10,
+    "filepath": "src/pages/slides/Moat.tsx",
+    "title": "Moat",
+    "description": "Zepto for pet services — dense provider network, quick-commerce ops, supply lock-in.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "position": 11,
+    "filepath": "src/pages/slides/Team.tsx",
+    "title": "Team",
+    "description": "Backed by a 400-person team — incubated inside Replit, led by Syed Adil.",
+    "speakerNotes": ""
+  },
+  {
+    "id": "11111111-1111-4111-8111-111111111112",
+    "position": 12,
+    "filepath": "src/pages/slides/Ask.tsx",
+    "title": "The Ask",
+    "description": "Raising $1B to build the densest provider network, hit 10K bookings/month, and expand to 4 metros.",
+    "speakerNotes": ""
+  }
+]
