@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: #f6f1e7;
+  --color-foreground: #1a1613;
+  --color-border: color-mix(in srgb, #1a1613 15%, transparent);
+  --color-input: color-mix(in srgb, #1a1613 20%, transparent);
+  --color-ring: color-mix(in srgb, #1a1613 30%, transparent);
+
+  --color-card: #f6f1e7;
+  --color-card-foreground: #1a1613;
+  --color-card-border: color-mix(in srgb, #1a1613 15%, transparent);
+
+  --color-popover: #fcfaf8;
+  --color-popover-foreground: #1a1613;
+  --color-popover-border: color-mix(in srgb, #1a1613 15%, transparent);
+
+  --color-primary: #1a1613;
+  --color-primary-foreground: #f6f1e7;
+
+  --color-secondary: color-mix(in srgb, #1a1613 5%, transparent);
+  --color-secondary-foreground: #1a1613;
+
+  --color-muted: color-mix(in srgb, #1a1613 5%, transparent);
+  --color-muted-foreground: color-mix(in srgb, #1a1613 60%, transparent);
+
+  --color-accent: color-mix(in srgb, #1a1613 5%, transparent);
+  --color-accent-foreground: #1a1613;
+
+  --color-destructive: #8a2e2e;
+  --color-destructive-foreground: #f6f1e7;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+@layer base {
+  body {
+    @apply font-serif antialiased bg-background text-foreground;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+}
