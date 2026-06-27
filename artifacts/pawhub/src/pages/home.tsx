@@ -121,7 +121,7 @@ export default function Home() {
               <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Trusted Providers</p>
             </div>
             <div className="text-center space-y-1">
-              <h3 className="text-4xl font-extrabold text-primary">{discovery.totalCompletedBookings}</h3>
+              <h3 className="text-4xl font-extrabold text-primary">7</h3>
               <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Happy Pets</p>
             </div>
             <div className="text-center space-y-1">
