@@ -111,8 +111,8 @@ router.get("/providers/:id", async (req, res): Promise<void> => {
   );
 });
 
-router.get("/provider/me", async (_req, res): Promise<void> => {
-  const userId = await getActiveUserId();
+router.get("/provider/me", async (req, res): Promise<void> => {
+  const userId = await getActiveUserId(req);
   const [provider] = await db
     .select()
     .from(providersTable)
@@ -131,7 +131,7 @@ router.put("/provider/me", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const [existing] = await db
     .select()
     .from(providersTable)

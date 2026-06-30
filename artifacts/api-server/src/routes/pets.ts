@@ -15,8 +15,8 @@ import { getActiveUserId } from "../lib/session";
 
 const router: IRouter = Router();
 
-router.get("/pets", async (_req, res): Promise<void> => {
-  const ownerId = await getActiveUserId();
+router.get("/pets", async (req, res): Promise<void> => {
+  const ownerId = await getActiveUserId(req);
   const pets = await db
     .select()
     .from(petsTable)
@@ -31,7 +31,7 @@ router.post("/pets", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const ownerId = await getActiveUserId();
+  const ownerId = await getActiveUserId(req);
   const [pet] = await db
     .insert(petsTable)
     .values({ ...parsed.data, ownerId })
@@ -45,7 +45,7 @@ router.get("/pets/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: params.error.message });
     return;
   }
-  const ownerId = await getActiveUserId();
+  const ownerId = await getActiveUserId(req);
   const [pet] = await db
     .select()
     .from(petsTable)
@@ -64,7 +64,7 @@ router.patch("/pets/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: (params.error ?? body.error)?.message });
     return;
   }
-  const ownerId = await getActiveUserId();
+  const ownerId = await getActiveUserId(req);
   const [pet] = await db
     .update(petsTable)
     .set(body.data)
@@ -83,7 +83,7 @@ router.delete("/pets/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: params.error.message });
     return;
   }
-  const ownerId = await getActiveUserId();
+  const ownerId = await getActiveUserId(req);
   const [pet] = await db
     .delete(petsTable)
     .where(and(eq(petsTable.id, params.data.id), eq(petsTable.ownerId, ownerId)))

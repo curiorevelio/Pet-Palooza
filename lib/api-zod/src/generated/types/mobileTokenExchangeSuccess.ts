@@ -6,6 +6,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface SwitchUserInput {
-  userId: number;
+export interface MobileTokenExchangeSuccess {
+  token: string;
 }

@@ -1,0 +1,1 @@
+- [drizzle push interactive prompt](drizzle-push-interactive-prompt.md) — push hangs on the truncate confirmation (can't pipe an answer); apply the matching DDL via psql then re-push to reconcile.

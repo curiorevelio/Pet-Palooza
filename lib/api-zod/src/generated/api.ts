@@ -16,7 +16,7 @@ export const HealthCheckResponse = zod.object({
 });
 
 /**
- * Returns the current user (auto-created demo session if none)
+ * Returns the domain user for the authenticated session
  * @summary Get the current user session
  */
 export const GetSessionResponse = zod.object({
@@ -51,39 +51,6 @@ export const UpdateSessionResponse = zod.object({
   isProvider: zod.boolean(),
   providerId: zod.number().nullish(),
 });
-
-/**
- * For the MVP demo, switch which user is acting as the current session
- * @summary Switch the active demo user
- */
-export const SwitchUserBody = zod.object({
-  userId: zod.number(),
-});
-
-export const SwitchUserResponse = zod.object({
-  user: zod.object({
-    id: zod.number(),
-    displayName: zod.string(),
-    email: zod.string(),
-    city: zod.string(),
-    avatarUrl: zod.string().nullish(),
-  }),
-  isProvider: zod.boolean(),
-  providerId: zod.number().nullish(),
-});
-
-/**
- * For the MVP demo, list all users so you can switch between them
- * @summary List all demo users
- */
-export const ListUsersResponseItem = zod.object({
-  id: zod.number(),
-  displayName: zod.string(),
-  email: zod.string(),
-  city: zod.string(),
-  avatarUrl: zod.string().nullish(),
-});
-export const ListUsersResponse = zod.array(ListUsersResponseItem);
 
 /**
  * @summary List pets owned by the current user
@@ -1073,4 +1040,88 @@ export const GetProviderDashboardResponse = zod.object({
       createdAt: zod.coerce.date(),
     }),
   ),
+});
+
+/**
+ * @summary Get the currently authenticated user
+ */
+export const GetCurrentAuthUserHeader = zod.object({
+  Authorization: zod
+    .string()
+    .optional()
+    .describe("Opaque session token — `Bearer <sid>`."),
+});
+
+export const GetCurrentAuthUserResponse = zod.object({
+  user: zod.union([
+    zod.object({
+      id: zod.string(),
+      email: zod.string().email().nullable(),
+      firstName: zod.string().nullable(),
+      lastName: zod.string().nullable(),
+      profileImageUrl: zod.string().nullable(),
+    }),
+    zod.null(),
+  ]),
+});
+
+/**
+ * @summary Start the browser OIDC login flow
+ */
+export const BeginBrowserLoginQueryParams = zod.object({
+  returnTo: zod.coerce
+    .string()
+    .optional()
+    .describe(
+      "Relative path to redirect to after login (must start with `\/`). Defaults to `\/`.",
+    ),
+});
+
+/**
+ * @summary Complete the browser OIDC login flow
+ */
+export const HandleBrowserLoginCallbackQueryParams = zod.object({
+  code: zod.coerce.string().optional(),
+  state: zod.coerce.string().optional(),
+  iss: zod.coerce.string().url().optional(),
+});
+
+/**
+ * @summary Clear the session and begin OIDC logout
+ */
+export const LogoutBrowserSessionHeader = zod.object({
+  Authorization: zod
+    .string()
+    .optional()
+    .describe("Opaque session token — `Bearer <sid>`."),
+});
+
+/**
+ * @summary Exchange a mobile OIDC code for a session token
+ */
+
+export const ExchangeMobileAuthorizationCodeBody = zod.object({
+  code: zod.string().min(1),
+  code_verifier: zod.string().min(1),
+  redirect_uri: zod.string().url().min(1),
+  state: zod.string().min(1),
+  nonce: zod.string().min(1).optional(),
+});
+
+export const ExchangeMobileAuthorizationCodeResponse = zod.object({
+  token: zod.string(),
+});
+
+/**
+ * @summary Delete a mobile session token
+ */
+export const LogoutMobileSessionHeader = zod.object({
+  Authorization: zod
+    .string()
+    .optional()
+    .describe("Opaque session token — `Bearer <sid>`."),
+});
+
+export const LogoutMobileSessionResponse = zod.object({
+  success: zod.boolean(),
 });

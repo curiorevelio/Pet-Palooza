@@ -31,7 +31,7 @@ router.get("/bookings", async (req, res): Promise<void> => {
     res.status(400).json({ error: params.error.message });
     return;
   }
-  const ownerId = await getActiveUserId();
+  const ownerId = await getActiveUserId(req);
   const conds = [eq(bookingsTable.ownerId, ownerId)];
   if (params.data.status) conds.push(eq(bookingsTable.status, params.data.status));
   const rows = await db
@@ -49,7 +49,7 @@ router.post("/bookings", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const ownerId = await getActiveUserId();
+  const ownerId = await getActiveUserId(req);
   const { petId, serviceId, slotId, notes } = parsed.data;
 
   const [pet] = await db
@@ -110,7 +110,7 @@ router.get("/bookings/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: params.error.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const [booking] = await db.select().from(bookingsTable).where(eq(bookingsTable.id, params.data.id));
   if (!booking) {
     res.status(404).json({ error: "Booking not found" });
@@ -136,7 +136,7 @@ router.patch("/bookings/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: (params.error ?? body.error)?.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const [booking] = await db.select().from(bookingsTable).where(eq(bookingsTable.id, params.data.id));
   if (!booking) {
     res.status(404).json({ error: "Booking not found" });
@@ -181,7 +181,7 @@ router.get("/provider/me/bookings", async (req, res): Promise<void> => {
     res.status(400).json({ error: params.error.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const [provider] = await db
     .select()
     .from(providersTable)

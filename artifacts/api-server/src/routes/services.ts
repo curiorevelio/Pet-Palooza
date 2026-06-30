@@ -21,8 +21,8 @@ async function getMyProviderId(userId: number): Promise<number | null> {
   return p?.id ?? null;
 }
 
-router.get("/provider/me/services", async (_req, res): Promise<void> => {
-  const userId = await getActiveUserId();
+router.get("/provider/me/services", async (req, res): Promise<void> => {
+  const userId = await getActiveUserId(req);
   const providerId = await getMyProviderId(userId);
   if (!providerId) {
     res.json([]);
@@ -41,7 +41,7 @@ router.post("/provider/me/services", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const providerId = await getMyProviderId(userId);
   if (!providerId) {
     res.status(400).json({ error: "Not a provider" });
@@ -61,7 +61,7 @@ router.patch("/provider/me/services/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: (params.error ?? body.error)?.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const providerId = await getMyProviderId(userId);
   if (!providerId) {
     res.status(404).json({ error: "Not a provider" });
@@ -85,7 +85,7 @@ router.delete("/provider/me/services/:id", async (req, res): Promise<void> => {
     res.status(400).json({ error: params.error.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const providerId = await getMyProviderId(userId);
   if (!providerId) {
     res.status(404).json({ error: "Not a provider" });

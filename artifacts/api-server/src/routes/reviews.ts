@@ -16,7 +16,7 @@ router.post("/reviews", async (req, res): Promise<void> => {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
-  const userId = await getActiveUserId();
+  const userId = await getActiveUserId(req);
   const [booking] = await db
     .select()
     .from(bookingsTable)

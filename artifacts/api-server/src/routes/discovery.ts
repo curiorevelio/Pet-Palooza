@@ -58,8 +58,8 @@ router.get("/discovery/home", async (_req, res): Promise<void> => {
   );
 });
 
-router.get("/discovery/owner-dashboard", async (_req, res): Promise<void> => {
-  const ownerId = await getActiveUserId();
+router.get("/discovery/owner-dashboard", async (req, res): Promise<void> => {
+  const ownerId = await getActiveUserId(req);
   const [pets, allBookings] = await Promise.all([
     db.select().from(petsTable).where(eq(petsTable.ownerId, ownerId)),
     db
@@ -98,8 +98,8 @@ router.get("/discovery/owner-dashboard", async (_req, res): Promise<void> => {
   );
 });
 
-router.get("/discovery/provider-dashboard", async (_req, res): Promise<void> => {
-  const userId = await getActiveUserId();
+router.get("/discovery/provider-dashboard", async (req, res): Promise<void> => {
+  const userId = await getActiveUserId(req);
   const [provider] = await db
     .select()
     .from(providersTable)

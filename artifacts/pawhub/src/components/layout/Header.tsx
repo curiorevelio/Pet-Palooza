@@ -1,31 +1,15 @@
-import { useLocation } from "wouter";
-import { useGetSession, useListUsers, useSwitchUser } from "@workspace/api-client-react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useGetSession } from "@workspace/api-client-react";
+import { useAuth } from "@workspace/replit-auth-web";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { PawPrint, User as UserIcon } from "lucide-react";
+import { PawPrint, User as UserIcon, LogOut } from "lucide-react";
 import { Link } from "wouter";
 import { SettingsDialog } from "./SettingsDialog";
 
 export function Header() {
-  const [location, setLocation] = useLocation();
   const { data: session } = useGetSession();
-  const { data: users } = useListUsers();
-  const switchUser = useSwitchUser();
-  const queryClient = useQueryClient();
-
-  const handleSwitchUser = (userId: number) => {
-    switchUser.mutate(
-      { data: { userId } },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries();
-          setLocation("/");
-        },
-      }
-    );
-  };
+  const { logout } = useAuth();
 
   if (!session) return null;
 
@@ -38,10 +22,6 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-4">
-          <span className="text-xs font-bold uppercase tracking-wider bg-accent text-accent-foreground px-2.5 py-1 rounded-full hidden sm:inline-block border border-accent-foreground/10">
-            Demo Mode
-          </span>
-          
           <nav className="hidden md:flex items-center gap-6 text-sm font-semibold">
             {session.isProvider ? (
               <>
@@ -99,21 +79,13 @@ export function Header() {
                 </div>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider font-bold">Switch Demo User</DropdownMenuLabel>
-              {users?.map((u) => (
-                <DropdownMenuItem 
-                  key={u.id} 
-                  onClick={() => handleSwitchUser(u.id)}
-                  className="cursor-pointer font-medium"
-                >
-                  <Avatar className="mr-2 h-6 w-6">
-                    <AvatarImage src={u.avatarUrl || ""} />
-                    <AvatarFallback className="text-[10px]">{u.displayName[0]}</AvatarFallback>
-                  </Avatar>
-                  <span>{u.displayName}</span>
-                  {u.id === session.user.id && <span className="ml-auto text-xs text-primary font-bold">Active</span>}
-                </DropdownMenuItem>
-              ))}
+              <DropdownMenuItem
+                onClick={() => logout()}
+                className="cursor-pointer font-medium text-destructive focus:text-destructive"
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
