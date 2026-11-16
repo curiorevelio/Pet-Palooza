@@ -11,6 +11,15 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
 
+### Local booking demo
+
+Set `PAWHUB_DEMO_MODE=true` when starting the API with `NODE_ENV=development`
+to skip Replit sign-in and use the seeded Emma Hayes account. All visitors
+share that account and can change its data; use only an isolated development
+database with sample data. The UI labels this mode and hides logout.
+The flag has no effect in production or when `NODE_ENV` is unset. Leave it
+unset to use normal Replit authentication. No frontend flag is required.
+
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
