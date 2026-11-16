@@ -7,6 +7,7 @@ interface AuthState {
   user: AuthUser | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  demoMode: boolean;
   login: () => void;
   logout: () => void;
 }
@@ -14,6 +15,7 @@ interface AuthState {
 export function useAuth(): AuthState {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [demoMode, setDemoMode] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -21,11 +23,12 @@ export function useAuth(): AuthState {
     fetch("/api/auth/user", { credentials: "include" })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json() as Promise<{ user: AuthUser | null }>;
+        return res.json() as Promise<{ user: AuthUser | null; demoMode?: boolean }>;
       })
       .then((data) => {
         if (!cancelled) {
           setUser(data.user ?? null);
+          setDemoMode(data.demoMode === true);
           setIsLoading(false);
         }
       })
@@ -54,6 +57,7 @@ export function useAuth(): AuthState {
     user,
     isLoading,
     isAuthenticated: !!user,
+    demoMode,
     login,
     logout,
   };

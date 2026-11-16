@@ -10,6 +10,10 @@ import {
   type SessionData,
 } from "../lib/auth";
 
+export const demoMode =
+  process.env.NODE_ENV === "development" &&
+  process.env.PAWHUB_DEMO_MODE === "true";
+
 declare global {
   namespace Express {
     interface User extends AuthUser {}
@@ -61,6 +65,18 @@ export async function authMiddleware(
   req.isAuthenticated = function (this: Request) {
     return this.user != null;
   } as Request["isAuthenticated"];
+
+  if (demoMode) {
+    req.user = {
+      id: "pawhub-development-demo",
+      email: "emma@pawhub.demo",
+      firstName: "Emma",
+      lastName: "Hayes",
+      profileImageUrl: null,
+    };
+    next();
+    return;
+  }
 
   const sid = getSessionId(req);
   if (!sid) {

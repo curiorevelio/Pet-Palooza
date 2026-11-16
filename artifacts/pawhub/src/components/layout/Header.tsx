@@ -9,12 +9,17 @@ import { SettingsDialog } from "./SettingsDialog";
 
 export function Header() {
   const { data: session } = useGetSession();
-  const { logout } = useAuth();
+  const { logout, demoMode } = useAuth();
 
   if (!session) return null;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+      {demoMode && (
+        <div role="status" className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-950">
+          Development demo — shared demo account. Use sample data only.
+        </div>
+      )}
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-primary font-bold text-2xl font-serif">
           <PawPrint className="w-7 h-7" />
@@ -78,14 +83,14 @@ export function Header() {
                   <SettingsDialog />
                 </div>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
+              {!demoMode && <DropdownMenuSeparator />}
+              {!demoMode && <DropdownMenuItem
                 onClick={() => logout()}
                 className="cursor-pointer font-medium text-destructive focus:text-destructive"
               >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
-              </DropdownMenuItem>
+              </DropdownMenuItem>}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

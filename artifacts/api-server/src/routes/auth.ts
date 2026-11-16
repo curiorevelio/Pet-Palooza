@@ -7,6 +7,7 @@ import {
   LogoutMobileSessionResponse,
 } from "@workspace/api-zod";
 import { db, authUsersTable } from "@workspace/db";
+import { demoMode } from "../middlewares/authMiddleware";
 import {
   clearSession,
   getOidcConfig,
@@ -83,11 +84,12 @@ async function upsertUser(claims: Record<string, unknown>) {
 }
 
 router.get("/auth/user", (req: Request, res: Response) => {
-  res.json(
-    GetCurrentAuthUserResponse.parse({
+  res.json({
+    ...GetCurrentAuthUserResponse.parse({
       user: req.isAuthenticated() ? req.user : null,
     }),
-  );
+    demoMode,
+  });
 });
 
 router.get("/login", async (req: Request, res: Response) => {
