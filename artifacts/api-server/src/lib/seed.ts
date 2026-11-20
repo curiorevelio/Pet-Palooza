@@ -41,8 +41,8 @@ export async function seedIfEmpty(): Promise<void> {
   const [emma, david] = await db
     .insert(usersTable)
     .values([
-      { displayName: "Emma Hayes", email: "emma@pawhub.demo", city: "Brooklyn, NY", avatarUrl: img("owner_emma") },
-      { displayName: "David Chen", email: "david@pawhub.demo", city: "Brooklyn, NY", avatarUrl: img("owner_david") },
+      { displayName: "Emma Hayes", email: "emma@pawhub.demo", city: "Indiranagar, Bengaluru", avatarUrl: img("owner_emma") },
+      { displayName: "David Chen", email: "david@pawhub.demo", city: "Koramangala, Bengaluru", avatarUrl: img("owner_david") },
     ])
     .returning();
 
@@ -50,11 +50,11 @@ export async function seedIfEmpty(): Promise<void> {
   const [sarahU, marcusU, lenaU, carlaU, jordanU] = await db
     .insert(usersTable)
     .values([
-      { displayName: "Sarah Lopez", email: "sarah@pawhub.demo", city: "Brooklyn, NY", avatarUrl: img("provider_sarah") },
-      { displayName: "Marcus Reed", email: "marcus@pawhub.demo", city: "Queens, NY", avatarUrl: img("provider_marcus") },
-      { displayName: "Lena Park", email: "lena@pawhub.demo", city: "Manhattan, NY", avatarUrl: img("provider_lena") },
-      { displayName: "Carla Ramirez", email: "carla@pawhub.demo", city: "Brooklyn, NY", avatarUrl: img("provider_carla") },
-      { displayName: "Jordan Kim", email: "jordan@pawhub.demo", city: "Queens, NY", avatarUrl: img("provider_jordan") },
+      { displayName: "Sarah Lopez", email: "sarah@pawhub.demo", city: "Indiranagar, Bengaluru", avatarUrl: img("provider_sarah") },
+      { displayName: "Marcus Reed", email: "marcus@pawhub.demo", city: "Koramangala, Bengaluru", avatarUrl: img("provider_marcus") },
+      { displayName: "Lena Park", email: "lena@pawhub.demo", city: "Jayanagar, Bengaluru", avatarUrl: img("provider_lena") },
+      { displayName: "Carla Ramirez", email: "carla@pawhub.demo", city: "HSR Layout, Bengaluru", avatarUrl: img("provider_carla") },
+      { displayName: "Jordan Kim", email: "jordan@pawhub.demo", city: "Whitefield, Bengaluru", avatarUrl: img("provider_jordan") },
     ])
     .returning();
 
@@ -69,8 +69,8 @@ export async function seedIfEmpty(): Promise<void> {
         userId: sarahU.id,
         businessName: "Sarah's Sunny Walks",
         bio: "Certified dog walker who treats every pup like family. Small group walks, long routes, and lots of belly rubs.",
-        city: "Brooklyn, NY",
-        zipCode: "11215",
+        city: "Indiranagar, Bengaluru",
+        zipCode: "560038",
         photoUrl: img("provider_sarah"),
         coverPhotoUrl: img("cover_walking"),
         yearsExperience: 6,
@@ -80,8 +80,8 @@ export async function seedIfEmpty(): Promise<void> {
         userId: marcusU.id,
         businessName: "Reed Dog Training",
         bio: "Force-free, science-based training. Specializing in reactive dogs, recall, and confident puppy starts.",
-        city: "Queens, NY",
-        zipCode: "11375",
+        city: "Koramangala, Bengaluru",
+        zipCode: "560034",
         photoUrl: img("provider_marcus"),
         coverPhotoUrl: img("cover_training"),
         yearsExperience: 9,
@@ -91,8 +91,8 @@ export async function seedIfEmpty(): Promise<void> {
         userId: lenaU.id,
         businessName: "Lena & Co. Grooming",
         bio: "Boutique grooming for dogs and cats. Hand-scissoring, gentle handling, and breed-specific cuts.",
-        city: "Manhattan, NY",
-        zipCode: "10003",
+        city: "Jayanagar, Bengaluru",
+        zipCode: "560041",
         photoUrl: img("provider_lena"),
         coverPhotoUrl: img("cover_grooming"),
         yearsExperience: 11,
@@ -102,8 +102,8 @@ export async function seedIfEmpty(): Promise<void> {
         userId: carlaU.id,
         businessName: "Carla's Cozy Pet Sitting",
         bio: "Overnight and day sitting in your home. Cats, dogs, and small critters welcome. Daily photo updates included.",
-        city: "Brooklyn, NY",
-        zipCode: "11211",
+        city: "HSR Layout, Bengaluru",
+        zipCode: "560102",
         photoUrl: img("provider_carla"),
         coverPhotoUrl: img("cover_sitting"),
         yearsExperience: 4,
@@ -113,8 +113,8 @@ export async function seedIfEmpty(): Promise<void> {
         userId: jordanU.id,
         businessName: "Jordan's Bath House",
         bio: "Self-serve and full-service dog washing. Eco-friendly shampoos, blueberry facials, nail trims.",
-        city: "Queens, NY",
-        zipCode: "11101",
+        city: "Whitefield, Bengaluru",
+        zipCode: "560066",
         photoUrl: img("provider_jordan"),
         coverPhotoUrl: img("cover_washing"),
         yearsExperience: 3,
