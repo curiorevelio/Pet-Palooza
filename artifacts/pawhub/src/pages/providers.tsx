@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Star, MapPin, Search } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { ProviderMap } from "@/components/ProviderMap";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -25,6 +27,7 @@ const SERVICE_OPTIONS = [
 
 export default function Providers() {
   const [serviceType, setServiceType] = useState<string>("all");
+  const [showMap, setShowMap] = useState(false);
   const [city, setCity] = useState("");
 
   const queryParams = useMemo(() => {
@@ -41,13 +44,19 @@ export default function Providers() {
   return (
     <div className="container mx-auto px-4 py-8 space-y-8">
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold font-serif">Find Pet Care Providers</h1>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h1 className="text-3xl font-bold font-serif">Find Pet Care Providers</h1>
+          <Button aria-expanded={showMap} onClick={() => setShowMap(!showMap)}>
+            <MapPin aria-hidden="true" />{showMap ? "Hide map" : "Show Bengaluru map"}
+          </Button>
+        </div>
         <Card className="border-none shadow-sm">
           <CardContent className="p-4 flex flex-col md:flex-row gap-3">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
-                placeholder="Filter by city (e.g. Brooklyn)"
+                aria-label="Filter by locality or city"
+                placeholder="Filter by locality or city (e.g. Indiranagar)"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 className="pl-9"
@@ -68,6 +77,8 @@ export default function Providers() {
           </CardContent>
         </Card>
       </div>
+
+      {showMap && providers && providers.length > 0 && <ProviderMap providers={providers} />}
 
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

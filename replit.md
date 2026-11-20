@@ -20,6 +20,21 @@ database with sample data. The UI labels this mode and hides logout.
 The flag has no effect in production or when `NODE_ENV` is unset. Leave it
 unset to use normal Replit authentication. No frontend flag is required.
 
+### Bengaluru provider map
+
+On **Find Care**, select **Show Bengaluru map** to see matching providers at
+their approximate service-area centres. Map loading is opt-in. Each mapped
+provider also has a Google Maps locality link that works without a key.
+
+Supply `VITE_GOOGLE_MAPS_API_KEY` to the booking frontend at dev-server startup
+or build time. Vite exposes this browser key to visitors: restrict it to the
+Maps JavaScript API and your approved website referrers, enable billing, and
+do not use a server key. Restart Vite after changing it.
+
+New demo databases seed five Bengaluru providers. For an existing **demo**
+database, run `psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f scripts/relocate-demo-providers.sql`
+once. It updates only matching seeded accounts at their original sample locations.
+
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
